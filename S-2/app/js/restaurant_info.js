@@ -1,6 +1,6 @@
 'use strict';
 
-import DBHelper from '~/dbhelper';
+import DBHelper from './dbhelper';
 let restaurant;
 var map;
 

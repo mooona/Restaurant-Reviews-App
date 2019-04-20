@@ -216,4 +216,5 @@ class DBHelper {
   }
 
 }
+
 module.exports = DBHelper;

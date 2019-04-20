@@ -154,5 +154,3 @@ gulp.task('watch', function () {
     gulp.watch(JS_PATH, ['js:browser']);
     gulp.watch(CSS_PATH, ['styles']);
 });
-// Default Gulp task.
-gulp.task('default', [ ]);

@@ -1,5 +1,5 @@
 'use strict';
-import DBHelper from '~/dbhelper';
+import DBHelper from './dbhelper.js';
 let restaurants,
     neighborhoods,
     cuisines,
