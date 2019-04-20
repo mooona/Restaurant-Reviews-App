@@ -1,7 +1,9 @@
+'use strict';
+import DBHelper from '~/dbhelper';
 let restaurants,
-  neighborhoods,
-  cuisines,
-loc;
+    neighborhoods,
+    cuisines,
+    loc;
 var mymarker;
 var locsMap;
 var markers = [];
@@ -12,13 +14,27 @@ var markers = [];
 document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
   fetchCuisines();
-    initMap();
+  setEventListeners();
+
 });
+
+var setEventListeners = () => {
+  var neighborHoodSelect = document.getElementById('neighborhoods-select');
+  neighborHoodSelect.addEventListener('change', function () {
+    updateRestaurants();
+
+  });
+
+  var cuisineSelect = document.getElementById('cuisines-select');
+  cuisineSelect.addEventListener('change', function () {
+    updateRestaurants();
+  });
+}
 
 /**
  * Fetch all neighborhoods and set their HTML.
  */
-fetchNeighborhoods = () => {
+var fetchNeighborhoods = () => {
   DBHelper.fetchNeighborhoods((error, neighborhoods) => {
     if (error) { // Got an error
       console.error(error);
@@ -32,7 +48,7 @@ fetchNeighborhoods = () => {
 /**
  * Set neighborhoods HTML.
  */
-fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
+var fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
   const select = document.getElementById('neighborhoods-select');
   neighborhoods.forEach(neighborhood => {
     const option = document.createElement('option');
@@ -45,7 +61,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
 /**
  * Fetch all cuisines and set their HTML.
  */
-fetchCuisines = () => {
+var fetchCuisines = () => {
   DBHelper.fetchCuisines((error, cuisines) => {
     if (error) { // Got an error!
       console.error(error);
@@ -59,7 +75,7 @@ fetchCuisines = () => {
 /**
  * Set cuisines HTML.
  */
-fillCuisinesHTML = (cuisines = self.cuisines) => {
+var fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
 
   cuisines.forEach(cuisine => {
@@ -84,7 +100,7 @@ window.initMap = () => {
     mymap(loc);
     updateRestaurants();
 }
-mymap = (loc) => {
+var mymap = (loc) => {
     locsMap = new mapboxgl.Map({
         container: 'locsMap',
         style: 'mapbox://styles/mapbox/streets-v11',
@@ -95,7 +111,7 @@ mymap = (loc) => {
 /**
  * Update page and map for current restaurants.
  */
-updateRestaurants = () => {
+var updateRestaurants = () => {
   const cSelect = document.getElementById('cuisines-select');
   const nSelect = document.getElementById('neighborhoods-select');
   const cIndex = cSelect.selectedIndex;
@@ -123,7 +139,7 @@ updateRestaurants = () => {
 /**
  * Create restaurant HTML.
  */
-createRestaurantHTML = (restaurant) => {
+var createRestaurantHTML = (restaurant, tabIndex) => {
   const li = document.createElement('li');
     li.className = 'restaurant-Card';
 
@@ -165,9 +181,9 @@ const imgContainer = document.createElement('div');
 /**
  * Add markers for current restaurants to the map.
  */
-addMarkersToMap = (restaurants = self.restaurants) => {
+var addMarkersToMap = (restaurants = self.restaurants) => {
     restaurants.forEach(restaurant => {
-         el = document.createElement('div');
+        var el = document.createElement('div');
         el.className = 'marker';
           mymarker =new mapboxgl.Marker(el, { offset: [0, -23] }).setLngLat(restaurant.latlng).addTo(locsMap);
         el.addEventListener('click', function(e) {
@@ -183,7 +199,7 @@ addMarkersToMap = (restaurants = self.restaurants) => {
 /**
  * Clear current restaurants, their HTML and remove their map markers.
  */
-resetRestaurants = (restaurants) => {
+var resetRestaurants = (restaurants) => {
     // Remove all restaurants
     self.restaurants = [];
     const ul = document.getElementById('restaurants-list');
@@ -194,7 +210,7 @@ resetRestaurants = (restaurants) => {
 /**
  * Create all restaurants HTML and add them to the webpage.
  */
-fillRestaurantsHTML = (restaurants = self.restaurants) => {
+var fillRestaurantsHTML = (restaurants = self.restaurants) => {
     const ul = document.getElementById('restaurants-list');
     ul.className = 'restaurant-Cards-Container';
     restaurants.forEach(restaurant => {

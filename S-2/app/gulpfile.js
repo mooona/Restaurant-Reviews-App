@@ -13,7 +13,6 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var mergeStream = require('merge-stream');
 var through = require('through2');
-var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var plumber = require('gulp-plumber');
@@ -115,7 +114,7 @@ gulp.task('styles', function () {
         .pipe(gzip())
         .pipe(gulp.dest(BUILD_PATH + '/css'))
         .pipe(livereload());
-})
+});
 
 // Templates
 
@@ -124,7 +123,7 @@ gulp.task('templates', function () {
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gzip())
         .pipe(gulp.dest('./'));
-})
+});
 
 // Images
 
@@ -143,7 +142,7 @@ gulp.task('images', function () {
         .pipe(gulp.dest(BUILD_PATH + '/images'))
         .pipe(webp())
         .pipe(gulp.dest(BUILD_PATH + '/images'))
-})
+});
 
 /* WATCH TASK + BROWSER SYNC */
 
@@ -155,3 +154,5 @@ gulp.task('watch', function () {
     gulp.watch(JS_PATH, ['js:browser']);
     gulp.watch(CSS_PATH, ['styles']);
 });
+// Default Gulp task.
+gulp.task('default', [ ]);
