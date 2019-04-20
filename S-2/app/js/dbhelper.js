@@ -1,156 +1,174 @@
+const offlineMessage = document.getElementById('offline');
+const noDataMessage = document.getElementById('no-data');
+const dataSavedMessage = document.getElementById('data-saved');
+const saveErrorMessage = document.getElementById('save-error');
+
+
 /**
  * Common database helper functions.
  */
 class DBHelper {
 
   /**
-   * Database URL.
-   * Change this to restaurants.json file location on your server.
+   * Alternative Text as the API server doesn't provide it.
+   */
+  static getAlternativeText(id) {
+    const altTexts = {
+      1: "Interior of Mission Chinese Food",
+      2: "Pizza Quattro Formaggi",
+      3: "Interior of Kang Ho Dong Baekjeong",
+      4: "Outside view of Katz's Delicatessen at night",
+      5: "Open kitchen of Roberta's Pizza",
+      6: "People queueing at Hometown BBQ",
+      7: "Outside view of Superiority Burger",
+      8: "Outside view of The Dutch",
+      9: "People eating at Mu Ramen",
+      10: "Interior of Casa Enrique"
+    };
+    return altTexts[id];
+  }
+
+  // Alert user that data may not be current
+  // "You're offline and viewing stored data."
+  static messageOffline() {
+    const lastUpdated = this.getLastUpdated();
+    if (lastUpdated) {
+     offlineMessage.textContent += ' Last fetched server data: ' + lastUpdated;
+    }
+    offlineMessage.style.display = 'block';
+  }
+
+  // Alert user that there is no data available.
+  // "You're offline and local data is unavailable."
+  static messageNoData() {
+    //
+    noDataMessage.style.display = 'block';
+  }
+
+  // Alert user that data has been saved for offline.
+  // "Server data was saved for offline mode.""
+  static messageDataSaved() {
+    const lastUpdated = this.getLastUpdated();
+    if (lastUpdated) {dataSavedMessage.textContent += ' on ' + lastUpdated;}
+    dataSavedMessage.style.display = 'block';
+  }
+
+  // Alert user that data couldn't be saved offline
+  // "Server data couldn't be saved offline.""
+  static messageSaveError() {
+    saveErrorMessage.style.display = 'block';
+  }
+
+  // Util network function.
+  static getLastUpdated() {
+    return localStorage.getItem('lastUpdated');
+  }
+
+  // Util network function.
+  static setLastUpdated(date) {
+    localStorage.setItem('lastUpdated', date);
+  }
+
+  /*
+   * logResult is available for debugging puprposes, it does some logging
+   * of the JSON data.
+   */
+  static logResult(result) {
+    console.log(result);
+  }
+
+  /*
+   * The fetch call returns a promise that resolves to a response object.
+   * If the request does not complete, .catch takes over and is passed the
+   * corresponding error.
+   */
+  static logError(error) {
+    console.log('[ERROR] Looks like there was a problem: \n', error);
+  }
+
+  /*
+   * validateResponse checks if the response is valid (is it a 200-299?).
+   * If it isn't, an error is thrown, skipping the rest of the then blocks and
+   * triggering the catch block. Without this check bad responses are passed
+   * down the chain and could break later code that may rely on receiving
+   * a valid response. If the response is valid, it is passed to
+   * readResponseAsJSON.
+   * TODO: respond with custom pages for different errors or handle other
+   * responses that are not ok (i.e., not 200-299), but still usable
+   * (e.g., status codes in the 300 range)
+   */
+  static validateResponse(response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
+  }
+
+  /*
+   * readResponseAsJSON reads the body of the response using the Response.json()
+   * method. This method returns a promise that resolves to JSON. Once this
+   * promise resolves, the JSON data is passed to logResult.
+   */
+  static readResponseAsJSON(response) {
+    return response.json();
+  }
+
+  /**
+   * Get the database URL.
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
    */
   static get DATABASE_URL() {
-    const port = 8000 // Change this to your server port
-    return `http://localhost:${port}/data/restaurants.json`;
+    const port = 1337;
+    return `http://localhost:${port}`;
   }
 
   /**
-   * Fetch all restaurants.
+   * getServerData
    */
-  static fetchRestaurants(callback) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', DBHelper.DATABASE_URL);
-    xhr.onload = () => {
-      if (xhr.status === 200) { // Got a success response from server!
-        const json = JSON.parse(xhr.responseText);
-        const restaurants = json.restaurants;
-        callback(null, restaurants);
-      } else { // Oops!. Got an error from server.
-        const error = (`Request failed. Returned status of ${xhr.status}`);
-        callback(error, null);
-      }
-    };
-    xhr.send();
+  static getServerData(pathToResource) {
+    // Fetch is called on a resource and Fetch returns a promise that will
+    // resolve to a response object. When the promise resolves, the response
+    // object is passed to validateResponse.
+    return fetch(pathToResource)
+      .then(this.validateResponse)
+      .then(this.readResponseAsJSON)
+      // Once the promise resolves, the JSON data is passed to logResult.
+      // .then(this.logResult)
+      // .catch(this.logError);
   }
 
   /**
-   * Fetch a restaurant by its ID.
+   * Returns the relative url for a restaurant.
    */
-  static fetchRestaurantById(id, callback) {
-    // fetch all restaurants with proper error handling.
-    DBHelper.fetchRestaurants((error, restaurants) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        const restaurant = restaurants.find(r => r.id == id);
-        if (restaurant) { // Got the restaurant
-          callback(null, restaurant);
-        } else { // Restaurant does not exist in the database
-          callback('Restaurant does not exist', null);
-        }
-      }
-    });
+  static getRestaurantURL(restaurant) {
+    // return `./restaurant.html?id=${restaurant.id}`
+    return `restaurant.html?id=${restaurant.id}`
   }
 
   /**
-   * Fetch restaurants by a cuisine type with proper error handling.
+   * Returns the restaurant image URL.
+   * Using id to construct urls as the local development API server doesn't
+   * always have a photograph field.
+   * jpg is default image type.
+   * 800 is default width.
    */
-  static fetchRestaurantByCuisine(cuisine, callback) {
-    // Fetch all restaurants  with proper error handling
-    DBHelper.fetchRestaurants((error, restaurants) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        // Filter restaurants to have only given cuisine type
-        const results = restaurants.filter(r => r.cuisine_type == cuisine);
-        callback(null, results);
-      }
-    });
-  }
-
-  /**
-   * Fetch restaurants by a neighborhood with proper error handling.
-   */
-  static fetchRestaurantByNeighborhood(neighborhood, callback) {
-    // Fetch all restaurants
-    DBHelper.fetchRestaurants((error, restaurants) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        // Filter restaurants to have only given neighborhood
-        const results = restaurants.filter(r => r.neighborhood == neighborhood);
-        callback(null, results);
-      }
-    });
-  }
-
-  /**
-   * Fetch restaurants by a cuisine and a neighborhood with proper error handling.
-   */
-  static fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, callback) {
-    // Fetch all restaurants
-    DBHelper.fetchRestaurants((error, restaurants) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        let results = restaurants
-        if (cuisine != 'all') { // filter by cuisine
-          results = results.filter(r => r.cuisine_type == cuisine);
-        }
-        if (neighborhood != 'all') { // filter by neighborhood
-          results = results.filter(r => r.neighborhood == neighborhood);
-        }
-        callback(null, results);
-      }
-    });
-  }
-
-  /**
-   * Fetch all neighborhoods with proper error handling.
-   */
-  static fetchNeighborhoods(callback) {
-    // Fetch all restaurants
-    DBHelper.fetchRestaurants((error, restaurants) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        // Get all neighborhoods from all restaurants
-        const neighborhoods = restaurants.map((v, i) => restaurants[i].neighborhood)
-        // Remove duplicates from neighborhoods
-        const uniqueNeighborhoods = neighborhoods.filter((v, i) => neighborhoods.indexOf(v) == i)
-        callback(null, uniqueNeighborhoods);
-      }
-    });
-  }
-
-  /**
-   * Fetch all cuisines with proper error handling.
-   */
-  static fetchCuisines(callback) {
-    // Fetch all restaurants
-    DBHelper.fetchRestaurants((error, restaurants) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        // Get all cuisines from all restaurants
-        const cuisines = restaurants.map((v, i) => restaurants[i].cuisine_type)
-        // Remove duplicates from cuisines
-        const uniqueCuisines = cuisines.filter((v, i) => cuisines.indexOf(v) == i)
-        callback(null, uniqueCuisines);
-      }
-    });
-  }
-
-  /**
-   * Restaurant page URL.
-   */
-  static urlForRestaurant(restaurant) {
-    return (`./restaurant.html?id=${restaurant.id}`);
-  }
-
-  /**
-   * Restaurant image URL.
-   */
-  static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}`);
+  static getImageUrlForRestaurant(restaurant, imageType, width) {
+    // Default image type is jpeg.
+    let fileExtension = 'jpg';
+    switch (imageType) {
+      case 'jpeg':
+        break;
+      case 'webp':
+        fileExtension = 'webp';
+        break;
+      default:
+        console.log(`[DEBUG] unhandled imageType: ${imageType}`);
+    }
+    if (typeof width !== 'undefined') {
+      return `img/${restaurant.id}_w_${width}.${fileExtension}`;
+    } else {
+      return `img/${restaurant.id}_w_800.${fileExtension}`;
+    }
   }
 
 }
