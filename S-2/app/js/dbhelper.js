@@ -69,10 +69,6 @@ class DBHelper {
     localStorage.setItem('lastUpdated', date);
   }
 
-  /*
-   * logResult is available for debugging puprposes, it does some logging
-   * of the JSON data.
-   */
   static logResult(result) {
     console.log(result);
   }
