@@ -5,7 +5,7 @@ let restaurant;
 var map;
 
 /**
- * Initialize Google map, called from HTML.
+ * Initialize map box map, called from HTML.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
     initMap();
@@ -27,7 +27,7 @@ window.initMap = () => {
         el.className = 'marker';
         let mymarker =new mapboxgl.Marker(el, { offset: [0, -23] }).setLngLat(restaurant.latlng).addTo(locsMap);
       fillBreadcrumb();
-      DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
+    //  DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
     }
   });
 }
@@ -226,7 +226,8 @@ var getParameterByName = (name, url) => {
 /*on scroll change the breadcrumb nav color*/
 window.onscroll = () => {
     const nav = document.getElementById('breadcrumb');
-    if(this.scrollY <= 12) nav.className = '';
+    //const navpos= nav.offset().top;
+    if( window.scrollY <= 12) nav.className = '';
     else nav.className = 'scroll';
 };
 

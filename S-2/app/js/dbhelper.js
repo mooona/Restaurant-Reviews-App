@@ -196,23 +196,8 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    if (restaurant.id == 10) return (`./build/public/images/10.webp`);
-    return (`./build/public/images/${restaurant.photograph}.webp`);
-  }
-
-  /**
-   * Map marker for a restaurant.
-   */
-  static mapMarkerForRestaurant(restaurant, map) {
-    const marker = new google.maps.Marker({
-      position: restaurant.latlng,
-      title: restaurant.name,
-      url: DBHelper.urlForRestaurant(restaurant),
-      map: map,
-      animation: google.maps.Animation.DROP
-    }
-    );
-    return marker;
+    if (restaurant.id == 10) return (`./img/10.webp`);
+    return (`./img/${restaurant.photograph}.webp`);
   }
 
 }

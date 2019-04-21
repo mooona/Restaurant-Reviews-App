@@ -88,7 +88,7 @@ var fillCuisinesHTML = (cuisines = self.cuisines) => {
 }
 
 /**
- * Initialize Google map, called from HTML.
+ * Initialize map box map, called from HTML.
  */
 window.initMap = () => {
      loc = {

@@ -166,9 +166,9 @@ gulp.task('images', function () {
                 imageminJpegRecompress()
             ]
         ))
-        .pipe(gulp.dest(BUILD_PATH + '/images'))
+        .pipe(gulp.dest(BUILD_PATH + '/img'))
         .pipe(webp())
-        .pipe(gulp.dest(BUILD_PATH + '/images'))
+        .pipe(gulp.dest(BUILD_PATH + '/img'))
 })
 
 /* WATCH TASK + BROWSER SYNC */

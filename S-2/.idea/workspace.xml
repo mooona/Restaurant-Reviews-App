@@ -3,10 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="a51c4f08-5e80-4de4-9496-c1ac23c3d768" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/public/js/dbhelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/dbhelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/public/js/dbhelper.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/dbhelper.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/public/js/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/public/js/restaurant_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/restaurant_info.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/public/js/restaurant_info.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/restaurant_info.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/gulpfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/dbhelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/dbhelper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/restaurant.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/restaurant_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/restaurant_info.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,7 +41,7 @@
           <entry key="css" value="1" />
           <entry key="html" value="9" />
           <entry key="jpg" value="1" />
-          <entry key="js" value="47" />
+          <entry key="js" value="48" />
           <entry key="json" value="15" />
           <entry key="md" value="4" />
         </counts>
@@ -45,7 +52,7 @@
           <entry key="HTML" value="9" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="15" />
-          <entry key="JavaScript" value="47" />
+          <entry key="JavaScript" value="48" />
           <entry key="Markdown" value="4" />
         </counts>
       </usages-collector>
@@ -53,7 +60,7 @@
         <counts>
           <entry key="css" value="2" />
           <entry key="html" value="31" />
-          <entry key="js" value="624" />
+          <entry key="js" value="686" />
           <entry key="json" value="85" />
           <entry key="md" value="3" />
         </counts>
@@ -63,7 +70,7 @@
           <entry key="CSS" value="2" />
           <entry key="HTML" value="31" />
           <entry key="JSON" value="85" />
-          <entry key="JavaScript" value="624" />
+          <entry key="JavaScript" value="686" />
           <entry key="Markdown" value="3" />
         </counts>
       </usages-collector>
@@ -83,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/gulpfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="190" column="83" selection-start-line="190" selection-start-column="73" selection-end-line="190" selection-end-column="83" />
+            <state relative-caret-position="286">
+              <caret line="189" column="18" selection-start-line="189" selection-start-column="11" selection-end-line="189" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -101,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/dbhelper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+            <state relative-caret-position="166">
+              <caret line="191" column="26" selection-start-line="191" selection-start-column="26" selection-end-line="191" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -110,8 +117,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="754">
-              <caret line="189" column="16" lean-forward="true" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="16" />
+            <state relative-caret-position="241">
+              <caret line="213" column="30" selection-start-line="213" selection-start-column="30" selection-end-line="213" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -119,8 +126,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/restaurant_info.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="217" column="34" lean-forward="true" selection-start-line="217" selection-start-column="34" selection-end-line="217" selection-end-column="34" />
+            <state relative-caret-position="256">
+              <caret line="226" column="25" lean-forward="true" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
+              <folding>
+                <element signature="e#42#49#1" expanded="true" />
+                <element signature="e#41#48#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -146,11 +166,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>View Details</find>
-      <find>breadcrumb</find>
-      <find>err</find>
-      <find>CSS_mapBox_PATH</find>
-      <find>mapBox</find>
       <find>styles</find>
       <find>CSS_PATH</find>
       <find>SW_PATH</find>
@@ -163,19 +178,24 @@
       <find>MapBox_PATH</find>
       <find>ima</find>
       <find>webp</find>
-      <find>images</find>
       <find>imageminPngquant</find>
       <find>gulp-rimraf</find>
       <find>img</find>
       <find>templates</find>
       <find>js</find>
       <find>outputDir</find>
-      <find>build</find>
-      <find>BUILD_PATH</find>
       <find>public</find>
       <find>pu</find>
-      <find>getCanvasContainer</find>
       <find>error</find>
+      <find>getCanvasContainer</find>
+      <find>BUILD_PATH</find>
+      <find>google</find>
+      <find>images</find>
+      <find>build</find>
+      <find>build/</find>
+      <find>scroll</find>
+      <find>browser</find>
+      <find>mapMarkerForRestaurant</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,15 +212,15 @@
         <option value="$PROJECT_DIR$/app/package-lock.json" />
         <option value="$PROJECT_DIR$/app/js/app.js" />
         <option value="$PROJECT_DIR$/server/README.md" />
-        <option value="$PROJECT_DIR$/app/server.js" />
-        <option value="$PROJECT_DIR$/app/js/main.js" />
-        <option value="$PROJECT_DIR$/app/js/restaurant_info.js" />
         <option value="$PROJECT_DIR$/app/package.json" />
         <option value="$PROJECT_DIR$/app/CSS/style.css" />
-        <option value="$PROJECT_DIR$/app/js/dbhelper.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/restaurant.html" />
+        <option value="$PROJECT_DIR$/app/js/main.js" />
         <option value="$PROJECT_DIR$/app/gulpfile.js" />
+        <option value="$PROJECT_DIR$/app/js/dbhelper.js" />
+        <option value="$PROJECT_DIR$/app/server.js" />
+        <option value="$PROJECT_DIR$/app/js/restaurant_info.js" />
       </list>
     </option>
   </component>
@@ -249,19 +269,6 @@
               <item name="S-2" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="S-2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="S-2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="S-2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="S-2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -357,31 +364,31 @@
       <workItem from="1555779531992" duration="595000" />
       <workItem from="1555827520869" duration="7511000" />
       <workItem from="1555842594639" duration="358000" />
-      <workItem from="1555843897262" duration="3027000" />
+      <workItem from="1555843897262" duration="6077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28552000" />
+    <option name="totallyTimeSpent" value="31602000" />
   </component>
   <component name="TodoView" selected-index="2" />
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="801" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32863188" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.39915374" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Run" order="5" weight="0.32863188" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32863188" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.25246826" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.25246826" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -466,13 +473,6 @@
     <entry file="file://$PROJECT_DIR$/app/sw.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gulpfile.js" />
     <entry file="file://$PROJECT_DIR$/app/package-lock.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -556,31 +556,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="213" column="30" selection-start-line="213" selection-start-column="30" selection-end-line="213" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="190" column="83" selection-start-line="190" selection-start-column="73" selection-end-line="190" selection-end-column="83" />
+        <state relative-caret-position="286">
+          <caret line="189" column="18" selection-start-line="189" selection-start-column="11" selection-end-line="189" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/dbhelper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="189" column="16" lean-forward="true" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="16" />
+        <state relative-caret-position="166">
+          <caret line="191" column="26" selection-start-line="191" selection-start-column="26" selection-end-line="191" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/restaurant_info.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="217" column="34" lean-forward="true" selection-start-line="217" selection-start-column="34" selection-end-line="217" selection-end-column="34" />
+        <state relative-caret-position="256">
+          <caret line="226" column="25" lean-forward="true" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
+          <folding>
+            <element signature="e#42#49#1" expanded="true" />
+            <element signature="e#41#48#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
