@@ -13,6 +13,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var mergeStream = require('merge-stream');
 var through = require('through2');
+/* var browserSync = require('browser-sync').create(); */
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var plumber = require('gulp-plumber');
@@ -23,6 +24,9 @@ var minifyCss = require('gulp-minify-css');
 var critical = require('critical').stream;
 var htmlmin = require('gulp-htmlmin');
 var gzip = require('gulp-gzip');
+var cssnano = require('gulp-cssnano');
+/* var inlineCss = require('gulp-inline-css'); */
+var inlinesource = require('gulp-inline-source');
 
 // Image compression & conversion
 
@@ -33,10 +37,14 @@ var webp = require('gulp-webp');
 
 // Paths
 
-var BUILD_PATH = 'build/public';
-var CSS_PATH = 'css/**/*.scss';
+var BUILD_PATH = 'build';
+var CSS_PATH = 'CSS/**/*.css';
+var Font_PATH = 'CSS/fonts/*.ttf';
+var MapBox_PATH = 'mapBox/*.{css,js}';
 var JS_PATH = 'js/**/*.js';
 var IMAGES_PATH = 'img/**/*.{png,jpeg,jpg,svg,gif}';
+var SW_PATH = 'sw.js';
+var HTML_PATH = '*.html';
 
 /* BUNDLE */
 
@@ -67,7 +75,7 @@ function bundle(b, outputPath) {
     var outputDir = splitPath.slice(0, -1).join('/');
 
     return b.bundle()
-    // log errors if they happen
+        // log errors if they happen
         .on('error', plugins.util.log.bind(plugins.util, 'Browserify Error'))
         .pipe(source(outputFile))
         // optional, remove if you don't need to buffer file contents
@@ -77,14 +85,14 @@ function bundle(b, outputPath) {
         // Add transformation tasks to the pipeline here.
         .pipe(uglify())
         .pipe(plugins.sourcemaps.write('./')) // writes .map file
-        .pipe(gulp.dest('build/public/' + outputDir));
+        .pipe(gulp.dest('build/' + outputDir));
 }
 
 var jsBundles = {
     'js/dbhelper.js': createBundle('./js/dbhelper.js'),
     'js/main.js': createBundle('./js/main.js'),
     'js/restaurant_info.js': createBundle('./js/restaurant_info.js'),
-    /* 'sw.js': createBundle('./sw.js') */
+    'sw.js': createBundle('sw.js')
 };
 
 gulp.task('js:browser', function () {
@@ -110,20 +118,39 @@ gulp.task('styles', function () {
             outputStyle: 'compressed'
         }))
         .pipe(minifyCss())
+        .pipe(cssnano())
         .pipe(sourcemaps.write())
-        .pipe(gzip())
-        .pipe(gulp.dest(BUILD_PATH + '/css'))
+        /*         .pipe(gzip()) */
+        .pipe(gulp.dest(BUILD_PATH + '/CSS'))
         .pipe(livereload());
+})
+//copy mapbox files
+gulp.task('copyMapBox', function() {
+    gulp.src(MapBox_PATH)
+        .pipe(gulp.dest(BUILD_PATH));
 });
-
+//fonts
+gulp.task('copyfonts', function() {
+    gulp.src(Font_PATH)
+        .pipe(gulp.dest(BUILD_PATH + '/CSS/fonts'));
+});
 // Templates
 
-gulp.task('templates', function () {
-    return gulp.src('./**/*.html')
+gulp.task('build', function () {
+    return gulp.src(HTML_PATH)
+        .pipe(gulp.dest('./build'))
+})
+
+gulp.task('inline-minify', ['build'], function () {
+    return gulp.src('build/*.html')
+        .pipe(inlinesource())
         .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(gulp.dest('./build'))
         .pipe(gzip())
-        .pipe(gulp.dest('./'));
-});
+        .pipe(gulp.dest('./build'));
+})
+
+gulp.task('templates', ['build', 'inline-minify']);
 
 // Images
 
@@ -139,10 +166,10 @@ gulp.task('images', function () {
                 imageminJpegRecompress()
             ]
         ))
-        .pipe(gulp.dest(BUILD_PATH + '/images'))
+        .pipe(gulp.dest(BUILD_PATH + '/img'))
         .pipe(webp())
-        .pipe(gulp.dest(BUILD_PATH + '/images'))
-});
+        .pipe(gulp.dest(BUILD_PATH + '/img'))
+})
 
 /* WATCH TASK + BROWSER SYNC */
 
@@ -152,5 +179,10 @@ gulp.task('watch', function () {
     livereload.listen();
     gulp.watch(IMAGES_PATH, ['images']);
     gulp.watch(JS_PATH, ['js:browser']);
+    gulp.watch(SW_PATH, ['js:browser']);
     gulp.watch(CSS_PATH, ['styles']);
-});
+    gulp.watch(Font_PATH, ['copyfonts']);
+    gulp.watch(MapBox_PATH, ['copyMapBox']);
+    gulp.watch(HTML_PATH, ['templates']);
+})
+
