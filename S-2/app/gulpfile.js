@@ -37,7 +37,7 @@ var webp = require('gulp-webp');
 
 // Paths
 
-var BUILD_PATH = './build/public';
+var BUILD_PATH = '../build';
 var CSS_PATH = 'CSS/**/*.css';
 var Font_PATH = 'CSS/fonts/*.ttf';
 var MapBox_PATH = './mapBox/*.{css,js}';
@@ -85,7 +85,7 @@ function bundle(b, outputPath) {
         // Add transformation tasks to the pipeline here.
         .pipe(uglify())
         .pipe(plugins.sourcemaps.write('./')) // writes .map file
-        .pipe(gulp.dest('build/public/' + outputDir));
+        .pipe(gulp.dest('../build/' + outputDir));
 }
 
 var jsBundles = {
@@ -142,7 +142,7 @@ gulp.task('build', function () {
 })
 
 gulp.task('inline-minify', ['build'], function () {
-    return gulp.src('build/*.html')
+    return gulp.src('../build/*.html')
         .pipe(inlinesource())
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest(BUILD_PATH))

@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a51c4f08-5e80-4de4-9496-c1ac23c3d768" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/public/js/dbhelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/dbhelper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/public/js/dbhelper.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/dbhelper.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/public/js/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/public/js/restaurant_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/restaurant_info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/public/js/restaurant_info.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/public/js/restaurant_info.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/gulpfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/js/dbhelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/dbhelper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/js/restaurant_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/restaurant_info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -60,7 +49,7 @@
         <counts>
           <entry key="css" value="2" />
           <entry key="html" value="31" />
-          <entry key="js" value="686" />
+          <entry key="js" value="693" />
           <entry key="json" value="85" />
           <entry key="md" value="3" />
         </counts>
@@ -70,7 +59,7 @@
           <entry key="CSS" value="2" />
           <entry key="HTML" value="31" />
           <entry key="JSON" value="85" />
-          <entry key="JavaScript" value="686" />
+          <entry key="JavaScript" value="693" />
           <entry key="Markdown" value="3" />
         </counts>
       </usages-collector>
@@ -87,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/gulpfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="189" column="18" selection-start-line="189" selection-start-column="11" selection-end-line="189" selection-end-column="18" />
+            <state relative-caret-position="105">
+              <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -108,8 +97,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/dbhelper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="191" column="26" selection-start-line="191" selection-start-column="26" selection-end-line="191" selection-end-column="26" />
+            <state relative-caret-position="-264">
+              <caret line="11" column="32" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -123,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/restaurant_info.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="256">
-              <caret line="226" column="25" lean-forward="true" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
+              <caret line="226" column="25" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
               <folding>
                 <element signature="e#42#49#1" expanded="true" />
                 <element signature="e#41#48#1" expanded="true" />
@@ -166,7 +155,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>styles</find>
       <find>CSS_PATH</find>
       <find>SW_PATH</find>
       <find>IMAGES_PATH</find>
@@ -184,18 +172,19 @@
       <find>templates</find>
       <find>js</find>
       <find>outputDir</find>
-      <find>public</find>
       <find>pu</find>
       <find>error</find>
       <find>getCanvasContainer</find>
       <find>BUILD_PATH</find>
       <find>google</find>
       <find>images</find>
-      <find>build</find>
-      <find>build/</find>
-      <find>scroll</find>
       <find>browser</find>
       <find>mapMarkerForRestaurant</find>
+      <find>scroll</find>
+      <find>build</find>
+      <find>public</find>
+      <find>/build</find>
+      <find>build/</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -217,10 +206,10 @@
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/restaurant.html" />
         <option value="$PROJECT_DIR$/app/js/main.js" />
-        <option value="$PROJECT_DIR$/app/gulpfile.js" />
         <option value="$PROJECT_DIR$/app/js/dbhelper.js" />
         <option value="$PROJECT_DIR$/app/server.js" />
         <option value="$PROJECT_DIR$/app/js/restaurant_info.js" />
+        <option value="$PROJECT_DIR$/app/gulpfile.js" />
       </list>
     </option>
   </component>
@@ -364,12 +353,12 @@
       <workItem from="1555779531992" duration="595000" />
       <workItem from="1555827520869" duration="7511000" />
       <workItem from="1555842594639" duration="358000" />
-      <workItem from="1555843897262" duration="6077000" />
+      <workItem from="1555843897262" duration="6247000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31602000" />
+    <option name="totallyTimeSpent" value="31772000" />
   </component>
   <component name="TodoView" selected-index="2" />
   <component name="ToolWindowManager">
@@ -570,28 +559,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/gulpfile.js">
+    <entry file="file://$PROJECT_DIR$/app/js/restaurant_info.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="189" column="18" selection-start-line="189" selection-start-column="11" selection-end-line="189" selection-end-column="18" />
+        <state relative-caret-position="256">
+          <caret line="226" column="25" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
+          <folding>
+            <element signature="e#42#49#1" expanded="true" />
+            <element signature="e#41#48#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/dbhelper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="191" column="26" selection-start-line="191" selection-start-column="26" selection-end-line="191" selection-end-column="26" />
+        <state relative-caret-position="-264">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/restaurant_info.js">
+    <entry file="file://$PROJECT_DIR$/app/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="226" column="25" lean-forward="true" selection-start-line="226" selection-start-column="25" selection-end-line="226" selection-end-column="25" />
-          <folding>
-            <element signature="e#42#49#1" expanded="true" />
-            <element signature="e#41#48#1" expanded="true" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
         </state>
       </provider>
     </entry>
