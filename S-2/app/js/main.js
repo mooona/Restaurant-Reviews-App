@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
   fetchCuisines();
   setEventListeners();
+    initMap();
 
 });
 

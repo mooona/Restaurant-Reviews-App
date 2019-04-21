@@ -37,10 +37,10 @@ var webp = require('gulp-webp');
 
 // Paths
 
-var BUILD_PATH = 'build';
+var BUILD_PATH = './build/public';
 var CSS_PATH = 'CSS/**/*.css';
 var Font_PATH = 'CSS/fonts/*.ttf';
-var MapBox_PATH = 'mapBox/*.{css,js}';
+var MapBox_PATH = './mapBox/*.{css,js}';
 var JS_PATH = 'js/**/*.js';
 var IMAGES_PATH = 'img/**/*.{png,jpeg,jpg,svg,gif}';
 var SW_PATH = 'sw.js';
@@ -85,7 +85,7 @@ function bundle(b, outputPath) {
         // Add transformation tasks to the pipeline here.
         .pipe(uglify())
         .pipe(plugins.sourcemaps.write('./')) // writes .map file
-        .pipe(gulp.dest('build/' + outputDir));
+        .pipe(gulp.dest('build/public/' + outputDir));
 }
 
 var jsBundles = {
@@ -127,7 +127,7 @@ gulp.task('styles', function () {
 //copy mapbox files
 gulp.task('copyMapBox', function() {
     gulp.src(MapBox_PATH)
-        .pipe(gulp.dest(BUILD_PATH));
+        .pipe(gulp.dest(BUILD_PATH+'/mapBox'));
 });
 //fonts
 gulp.task('copyfonts', function() {
@@ -138,16 +138,16 @@ gulp.task('copyfonts', function() {
 
 gulp.task('build', function () {
     return gulp.src(HTML_PATH)
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest(BUILD_PATH))
 })
 
 gulp.task('inline-minify', ['build'], function () {
     return gulp.src('build/*.html')
         .pipe(inlinesource())
         .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest(BUILD_PATH))
         .pipe(gzip())
-        .pipe(gulp.dest('./build'));
+        .pipe(gulp.dest(BUILD_PATH));
 })
 
 gulp.task('templates', ['build', 'inline-minify']);
@@ -166,9 +166,9 @@ gulp.task('images', function () {
                 imageminJpegRecompress()
             ]
         ))
-        .pipe(gulp.dest(BUILD_PATH + '/img'))
+        .pipe(gulp.dest(BUILD_PATH + '/images'))
         .pipe(webp())
-        .pipe(gulp.dest(BUILD_PATH + '/img'))
+        .pipe(gulp.dest(BUILD_PATH + '/images'))
 })
 
 /* WATCH TASK + BROWSER SYNC */
@@ -186,3 +186,10 @@ gulp.task('watch', function () {
     gulp.watch(HTML_PATH, ['templates']);
 })
 
+
+gulp.task('develop', function(done) {
+    runSequence('images', 'js:browser','styles','templates','copyfonts','copyMapBox', function() {
+        console.log('all functions deone');
+        done();
+    });
+});
