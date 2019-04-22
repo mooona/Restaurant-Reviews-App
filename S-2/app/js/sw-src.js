@@ -18,21 +18,16 @@ if (workbox) {
     // Debugging Workbox
     // Force production builds
     workbox.setConfig({ debug: false });
+    // Custom Cache Names
+    // https://developers.google.com/web/tools/workbox/guides/configure-workbox
+    workbox.core.setCacheNameDetails({
+        prefix: 'pwa',
+        suffix: 'v1'
+    });
 
     // cache-first handler.
     workbox.precaching.precacheAndRoute([]);
 
-    // Google APIs
-    workbox.routing.registerRoute(
-        new RegExp('(.*).(?:googleapis|gstatic).com/(.*)'),
-        workbox.strategies.staleWhileRevalidate({
-            cacheName: 'cache-googleapis',
-            cacheExpiration: {
-                maxEntries: 20
-            },
-            cacheableResponse: {statuses: [0, 200]}
-        })
-    );
 
     // Images
     workbox.routing.registerRoute(

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="theme-color" content="#242831"/>
   <!-- meta viewport tag to control the width and scaling of the browser's viewport. -->
   <!-- width=device-width to match the screen's width in device-independent pixels. -->
   <!-- initial-scale=1 to establish a 1:1 relationship between CSS pixels and device-independent pixels. -->
   <!-- Ensure page is accessible by not disabling user scaling. -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
   <!-- CSS -->
   <!-- Normalize.css for better cross-browser consistency -->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
   <!-- Main CSS file -->
   <link rel="stylesheet" href="CSS/style.css" type="text/css">
   <script src='./mapBox/mabBox.js'></script>
@@ -19,13 +19,13 @@
 </head>
 <body class="inside">
   <!-- Beginning header -->
-  <header aria-level="1">
+  <header>
     <!-- Beginning nav -->
     <nav>
       <h1 aria-label="Restaurant Reviews">Restaurant Reviews</h1>
     </nav>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" >
+    <ul id="breadcrumb"  aria-label="aria-label" role="navigation">
       <li><a href="/">Home</a></li>
     </ul>
     <!-- End breadcrumb -->
@@ -37,7 +37,7 @@
   <main id="maincontent" class="details-screen-container">
     <!-- Beginning map -->
     <section id="map-container">
-      <div id='locsMap' aria-label="restaurant location" role="map"></div>
+      <div id='locsMap' aria-label="restaurant location"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->

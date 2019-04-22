@@ -26,7 +26,7 @@ if (workbox) {
                     "./data/restaurants.json",
                     "./js/dbhelper.js",
                     "./js/main.js",
-                    "./js/sw.src.js",
+                    "./js/sw-src.js",
                     "./js/workbox-config.js",
                     "./js/mapBox/mapBox.js",
                     "./mapBox/mapBox.css",

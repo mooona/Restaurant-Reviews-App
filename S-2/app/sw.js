@@ -23,47 +23,38 @@ if (workbox) {
     workbox.precaching.precacheAndRoute([
         {
             "url": [
-                    "./data/restaurants.json",
-                    "./js/dbhelper.js",
-                    "./js/main.js",
-                    "./js/sw.src.js",
-                    "./js/workbox-config.js",
-                    "./js/mapBox/mapBox.js",
-                    "./mapBox/mapBox.css",
-                    "./img/1.jpg",
-                    "./img/2.jpg",
-                    "./img/3.jpg",
-                    "./img/4.jpg",
-                    "./img/5.jpg",
-                    "./img/6.jpg",
-                    "./img/7.jpg",
-                    "./img/8.jpg",
-                    "./img/9.jpg",
-                    "./img/10.jpg",
-                    "./img/favicon.png",
-                    "./img/marker.svg",
-                    "./css/fonts/Quicksand-Regular.ttf",
-                    "./css/fonts/Muli-Regular.ttf",
-                    "./css/fonts/Raleway-Regular.ttf",
-                    "./css/styles.css",
-                    "./index.html",
-                    "./restaurant.html"
+                "./manifest.json",
+                "./data/restaurants.json",
+                "./js/dbhelper.js",
+                "./js/main.js",
+                "./js/sw-src.js",
+                "./js/workbox-config.js",
+                "./js/mapBox/mapBox.js",
+                "./mapBox/mapBox.css",
+                "./img/1.jpg",
+                "./img/2.jpg",
+                "./img/3.jpg",
+                "./img/4.jpg",
+                "./img/5.jpg",
+                "./img/6.jpg",
+                "./img/7.jpg",
+                "./img/8.jpg",
+                "./img/9.jpg",
+                "./img/10.jpg",
+                "./img/favicon.png",
+                "./img/512.png",
+                "./img/192.png",
+                "./img/marker.svg",
+                "./css/fonts/Quicksand-Regular.ttf",
+                "./css/fonts/Muli-Regular.ttf",
+                "./css/fonts/Raleway-Regular.ttf",
+                "./css/styles.css",
+                "./index.html",
+                "./restaurant.html"
             ],
             "revision": "ef524a681d8e0c52cdd55e6c0bb53ec3"
         }
     ]);
-
-    // Google APIs
-    workbox.routing.registerRoute(
-        new RegExp('(.*).(?:googleapis|gstatic).com/(.*)'),
-        workbox.strategies.staleWhileRevalidate({
-            cacheName: 'cache-googleapis',
-            cacheExpiration: {
-                maxEntries: 20
-            },
-            cacheableResponse: {statuses: [0, 200]}
-        })
-    );
 
     // Images
     workbox.routing.registerRoute(

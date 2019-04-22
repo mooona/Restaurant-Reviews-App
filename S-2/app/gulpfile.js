@@ -13,7 +13,6 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var mergeStream = require('merge-stream');
 var through = require('through2');
-/* var browserSync = require('browser-sync').create(); */
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var plumber = require('gulp-plumber');
@@ -25,8 +24,8 @@ var critical = require('critical').stream;
 var htmlmin = require('gulp-htmlmin');
 var gzip = require('gulp-gzip');
 var cssnano = require('gulp-cssnano');
-/* var inlineCss = require('gulp-inline-css'); */
 var inlinesource = require('gulp-inline-source');
+const workboxBuild = require('workbox-build');
 
 // Image compression & conversion
 
@@ -41,6 +40,7 @@ var BUILD_PATH = '../build';
 var CSS_PATH = 'CSS/**/*.css';
 var Font_PATH = 'CSS/fonts/*.ttf';
 var MapBox_PATH = './mapBox/*.{css,js}';
+var Manifest_PATH = 'manifest.json';
 var JS_PATH = 'js/**/*.js';
 var IMAGES_PATH = 'img/**/*.{png,jpeg,jpg,svg,gif}';
 var SW_PATH = 'sw.js';
@@ -91,8 +91,7 @@ function bundle(b, outputPath) {
 var jsBundles = {
     'js/dbhelper.js': createBundle('./js/dbhelper.js'),
     'js/main.js': createBundle('./js/main.js'),
-    'js/restaurant_info.js': createBundle('./js/restaurant_info.js'),
-    'sw.js': createBundle('sw.js')
+    'js/restaurant_info.js': createBundle('./js/restaurant_info.js')
 };
 
 gulp.task('js:browser', function () {
@@ -128,6 +127,11 @@ gulp.task('styles', function () {
 gulp.task('copyMapBox', function() {
     gulp.src(MapBox_PATH)
         .pipe(gulp.dest(BUILD_PATH+'/mapBox'));
+});
+//copy manifest file
+gulp.task('copyManifest', function() {
+    gulp.src(Manifest_PATH)
+        .pipe(gulp.dest(BUILD_PATH));
 });
 //fonts
 gulp.task('copyfonts', function() {
@@ -171,6 +175,31 @@ gulp.task('images', function () {
         .pipe(gulp.dest(BUILD_PATH + '/img'))
 })
 
+
+
+// Create a service worker in build.
+gulp.task('service-worker', () => {
+    return workboxBuild.injectManifest({
+        swSrc: './js/sw-src.js',
+        swDest: BUILD_PATH + '/sw.js',
+        globDirectory: BUILD_PATH,
+        globPatterns: [
+            './**\/*.{html,css,js,ttf}',
+            './img/*.{png,jpg,svg}',
+            './manifest.json'
+        ],
+        globIgnores: [
+            'node_modules/**/*'
+        ]
+    }).then(({count, size, warnings}) => {
+        warnings.forEach(console.warn);
+        console.log(
+            `all ${count} of files will be pre-cached, in-total ${size} bytes.`);
+    }).catch(err => {
+        console.log('error happened ' + err);
+    });
+});
+
 /* WATCH TASK + BROWSER SYNC */
 
 gulp.task('watch', function () {
@@ -184,11 +213,12 @@ gulp.task('watch', function () {
     gulp.watch(Font_PATH, ['copyfonts']);
     gulp.watch(MapBox_PATH, ['copyMapBox']);
     gulp.watch(HTML_PATH, ['templates']);
+    gulp.watch('/js/sw-src.js', ['service-worker']);
 })
 
 
 gulp.task('develop', function(done) {
-    runSequence('images', 'js:browser','styles','templates','copyfonts','copyMapBox', function() {
+    runSequence('images', 'js:browser','styles','templates','copyfonts','copyMapBox','copyManifest','service-worker', function() {
         console.log('all functions deone');
         done();
     });

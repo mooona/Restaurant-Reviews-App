@@ -271,7 +271,7 @@ main{
     font-weight: 400;
     letter-spacing: 0.01786em;
     font-style: normal;
-    color: rgba(0, 0, 0, 0.54);
+    color: rgba(0, 0, 0, 0.71);
     width:100%;
 }
 /*reviews styling*/
@@ -280,7 +280,7 @@ main{
 }
 footer {
     background: #444444;
-    color: #969696;
+    color: #ecebeb;
     text-align: center;
     padding: 35px 15px;
 }
@@ -443,7 +443,7 @@ h1.restaurant-name {
 }
 .review-date {
     text-align: right;
-    color: #bbbbbb;
+    color: #383838;
     font-size: 0.783rem;
     line-height: 1.5rem;
 }
