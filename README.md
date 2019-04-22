@@ -16,7 +16,7 @@ This is part one of the **Restaurant Reviews** project, I've converted the stati
 
 ### How to run this project on local machine?
 
-###stage one S-1:
+##### stage one S-1:
 
 0. change directory to S-1
 
@@ -24,7 +24,7 @@ This is part one of the **Restaurant Reviews** project, I've converted the stati
 
 2. Visit the site: `http://localhost:8000`
 
-###stage two S-2:
+##### stage two S-2:
 
 0. change directory to S-2/build
 
