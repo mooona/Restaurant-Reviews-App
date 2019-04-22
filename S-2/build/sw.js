@@ -73,59 +73,111 @@ if (workbox) {
   },
   {
     "url": "sw.js",
-    "revision": "4c30d60e4bbcaa226db28a0cbc5dbf2d"
+    "revision": "f754b0950ef6d6e34cbbf04b7a49e272"
   },
   {
     "url": "img/1.jpg",
     "revision": "8488eb3d53cd65ca7aa0ad3adaca9fe3"
   },
   {
+    "url": "img/1.webp",
+    "revision": "5c65e4855aeacab9ba45be0a980c946f"
+  },
+  {
     "url": "img/10.jpg",
     "revision": "a3da623e6976c1a1a8430e880d8c4ebf"
+  },
+  {
+    "url": "img/10.webp",
+    "revision": "352270bc2eeee409d586f5f4ef33c94e"
   },
   {
     "url": "img/192.png",
     "revision": "8f0b0ca8c392ee44b35f22ecf039df61"
   },
   {
+    "url": "img/192.webp",
+    "revision": "a407a1e883ee91042aec6739200f2c29"
+  },
+  {
     "url": "img/2.jpg",
     "revision": "26c8673b0d2522e9b1bd5619d724f546"
+  },
+  {
+    "url": "img/2.webp",
+    "revision": "f4900019b0ca9b29a185b8f159c192a7"
   },
   {
     "url": "img/3.jpg",
     "revision": "e155af0ee52ea467937f2790219c7cfe"
   },
   {
+    "url": "img/3.webp",
+    "revision": "e8db1e0f187e9c56ab2b86d3b04d25d6"
+  },
+  {
     "url": "img/4.jpg",
     "revision": "aa790d38f03a0ba4e8d17f7cd33c6949"
+  },
+  {
+    "url": "img/4.webp",
+    "revision": "44fad1f08296a1303bf4fc228cfdcd18"
   },
   {
     "url": "img/5.jpg",
     "revision": "87c19586fd12ffb537131194ae8991fe"
   },
   {
+    "url": "img/5.webp",
+    "revision": "b61909f08754ee188f14a538f818f060"
+  },
+  {
     "url": "img/512.png",
     "revision": "84f77d2cd44a1495302a5df8e101debc"
+  },
+  {
+    "url": "img/512.webp",
+    "revision": "b90293a3c3e83b948df0205e1d89bfb2"
   },
   {
     "url": "img/6.jpg",
     "revision": "15e1663f80823a136be5a173e1df84dd"
   },
   {
+    "url": "img/6.webp",
+    "revision": "5be2adc42233b7a6dea58f5fabbaec56"
+  },
+  {
     "url": "img/7.jpg",
     "revision": "aaad45230c438c42620c3e455deea8f0"
+  },
+  {
+    "url": "img/7.webp",
+    "revision": "9cf8c0228e27c34768778c086b346056"
   },
   {
     "url": "img/8.jpg",
     "revision": "dda59503c872cc546a9f817d12e77372"
   },
   {
+    "url": "img/8.webp",
+    "revision": "a51d6b3317408f23efd3e135b37ee56e"
+  },
+  {
     "url": "img/9.jpg",
     "revision": "63b2022e6885e07267484c92f10c74bd"
   },
   {
+    "url": "img/9.webp",
+    "revision": "a2699423ee418f80a8546388d254967d"
+  },
+  {
     "url": "img/favicon.png",
     "revision": "1ecf53bb2b7b15009492ab60d7edc99d"
+  },
+  {
+    "url": "img/favicon.webp",
+    "revision": "ad1a728479f4b06d2a8fdd441e44d99e"
   },
   {
     "url": "img/marker.svg",

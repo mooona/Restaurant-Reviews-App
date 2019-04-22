@@ -185,7 +185,7 @@ gulp.task('service-worker', () => {
         globDirectory: BUILD_PATH,
         globPatterns: [
             './**\/*.{html,css,js,ttf}',
-            './img/*.{png,jpg,svg}',
+            './img/*.{png,jpg,svg,webp}',
             './manifest.json'
         ],
         globIgnores: [
