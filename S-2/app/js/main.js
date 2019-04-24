@@ -4,10 +4,10 @@ let restaurants,
     neighborhoods,
     cuisines,
     loc;
+
 var mymarker;
 var locsMap;
 var markers = [];
-
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -18,6 +18,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
     initMap();
 
 });
+/**
+ * Update page and map for current restaurants.
+ */
+var updateRestaurants = () => {
+    const cSelect = document.getElementById('cuisines-select');
+    const nSelect = document.getElementById('neighborhoods-select');
+    const cIndex = cSelect.selectedIndex;
+    const nIndex = nSelect.selectedIndex;
+
+    const cuisine = cSelect[cIndex].value;
+    const neighborhood = nSelect[nIndex].value;
+
+    DBHelper.fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, (error, restaurants) => {
+        if (error) { // Got an error!
+            console.error(error+" fetch error");
+        } else {
+            resetRestaurants(restaurants);
+            fillRestaurantsHTML();
+            loc=restaurants[0].latlng;
+            locsMap.flyTo({
+                center: loc
+            });
+            addMarkersToMap(restaurants);
+        }
+    })
+
+}
 
 var setEventListeners = () => {
   var neighborHoodSelect = document.getElementById('neighborhoods-select');
@@ -109,33 +136,7 @@ var mymap = (loc) => {
         zoom: 11.12// starting zoom
     });
 }
-/**
- * Update page and map for current restaurants.
- */
-var updateRestaurants = () => {
-  const cSelect = document.getElementById('cuisines-select');
-  const nSelect = document.getElementById('neighborhoods-select');
-  const cIndex = cSelect.selectedIndex;
-  const nIndex = nSelect.selectedIndex;
 
-  const cuisine = cSelect[cIndex].value;
-  const neighborhood = nSelect[nIndex].value;
-
-  DBHelper.fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, (error, restaurants) => {
-    if (error) { // Got an error!
-      console.error(error);
-    } else {
-      resetRestaurants(restaurants);
-      fillRestaurantsHTML();
-      loc=restaurants[0].latlng;
-        locsMap.flyTo({
-            center: loc
-        });
-        addMarkersToMap(restaurants);
-    }
-  })
-
-}
 
 /**
  * Create restaurant HTML.

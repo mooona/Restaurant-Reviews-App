@@ -45,7 +45,7 @@ if (workbox) {
   },
   {
     "url": "index.html",
-    "revision": "1d1f7a1a7d4375f86d5f64196aab8833"
+    "revision": "1a301f08c48efe3f68043e8c14db355d"
   },
   {
     "url": "js/dbhelper.js",
@@ -53,7 +53,7 @@ if (workbox) {
   },
   {
     "url": "js/main.js",
-    "revision": "4aeb5b1263fb725f8ff2f77081837543"
+    "revision": "959ebf6e72c087184904330d9a977565"
   },
   {
     "url": "js/restaurant_info.js",
@@ -69,11 +69,11 @@ if (workbox) {
   },
   {
     "url": "restaurant.html",
-    "revision": "046ad07e9aa6fa041e4dbd189bcebaf5"
+    "revision": "87b89a686e5cbb33813889f654295877"
   },
   {
     "url": "sw.js",
-    "revision": "f754b0950ef6d6e34cbbf04b7a49e272"
+    "revision": "47fa283ade05d11841a5a7d1e693eb8a"
   },
   {
     "url": "img/1.jpg",
