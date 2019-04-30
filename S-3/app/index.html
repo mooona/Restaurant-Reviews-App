@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#242831"/>
+  <!-- meta viewport tag to control the width and scaling of the browser's viewport. -->
+  <!-- width=device-width to match the screen's width in device-independent pixels. -->
+  <!-- initial-scale=1 to establish a 1:1 relationship between CSS pixels and device-independent pixels. -->
+  <!-- Ensure page is accessible by not disabling user scaling. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+  <!-- CSS -->
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="manifest" href="./manifest.json">
+  <script src='./mapBox/mabBox.js'></script>
+  <link href='./mapBox/mapBox.css' rel='stylesheet' />
+  <title>Restaurant Reviews</title>
+</head>
+<body>
+  <header>
+      <nav><h1 aria-label="Restaurant Reviews">Restaurant Reviews</h1></nav>
+  </header>
+
+  <main id="maincontent">
+    <section id="map-container">
+     <div id='locsMap' aria-label="restaurants locations"></div>
+    </section>
+    <section>
+      <div class="filter-options" aria-label="restaurants filtration">
+        <h2 class="filter-label">Filter Results</h2>
+
+        <select id="neighborhoods-select" name="neighborhoods" aria-label="filter by neighborhood">
+          <option value="all">All Neighborhoods</option>
+        </select>
+        <select id="cuisines-select" name="cuisines"  aria-label="filter by cuisine">
+          <option value="all">All Cuisines</option>
+        </select>
+      </div>
+      <ul id="restaurants-list" aria-label="Restaurants list"></ul>
+    </section>
+  </main>
+  <script type="module" charset="utf-8" src="js/main.js"></script>
+  <script type="application/javascript">
+      if ('serviceWorker' in navigator) {
+          console.log('Service worker is supported.')
+          // Use the window load event to keep the page load performant
+          // https://developers.google.com/web/fundamentals/primers/service-workers/registration
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('./sw.js')
+                  .then(registration => {
+                      console.log(`Service worker registered with scope: ${registration.scope}`);
+                  })
+                  .catch(error => {
+                      console.log(`Service worker registration failed, error: ${error}`);
+                  });
+          });
+      } else {
+          console.log('Service worker is not supported.')
+      }
+  </script>
+  <footer id="footer">
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+
+</body>
+
+</html>
