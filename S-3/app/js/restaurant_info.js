@@ -4,6 +4,76 @@ import DBHelper from './dbhelper';
 let restaurant;
 var map;
 
+const triggerReviewRequestQueueSync = function () {
+  navigator.serviceWorker.ready.then(function (swRegistration) {
+    swRegistration.sync.register('reviewqueue');
+  });
+}
+
+function submitReview(body) {
+  return DBHelper.openDatabase
+    .then(db => {
+      let restaurantStore = DBHelper.openObjectStore(db, 'restaurants', 'readonly');
+      return restaurantStore.get(parseInt(body.restaurant_id)).then((restaurant) => {
+
+        const updateRestaurants = function (restaurant) {
+          let restaurantStore = DBHelper.openObjectStore(db, 'restaurants', 'readwrite');
+          restaurantStore.put(restaurant);
+          return restaurantStore.complete;
+        }
+
+        const updateReviewQueue = function (restaurant) {
+          let reviewQueue = DBHelper.openObjectStore(db, 'reviewqueue', 'readwrite');
+          reviewQueue.put(body, body.createdAt);
+          return reviewQueue.complete;
+        }
+
+        restaurant.reviews.push(body)
+
+        return Promise.all([updateReviewQueue(restaurant), updateRestaurants(restaurant)])
+          .then(() => {
+            return triggerReviewRequestQueueSync();
+          })
+      });
+    })
+}
+
+const submitButton = document.getElementById('submit-button');
+submitButton.addEventListener('click', function () {
+  const form = document.getElementById("reviews-form");
+  let reviewerName = document.getElementById('reviewer-name').value;
+  const comment = form.textarea.value;
+  const ratings = document.querySelectorAll('input[type="radio"]');
+  const restaurantId = window.location.href.split('=')[1];
+  let rating = 0;
+  let ratingId;
+  for (var item of ratings) {
+    if (item.checked == true) {
+      ratingId = item.id;
+      rating = item.value;
+      item.checked = false;
+      break;
+    }
+  }
+
+  const body = {
+    'restaurant_id': restaurantId,
+    'name': reviewerName,
+    'rating': rating,
+    'comments': comment,
+    'createdAt': Date.now(),
+    'updatedAt': Date.now()
+  }
+
+  form.textarea.value = '';
+  document.getElementById('reviewer-name').value = '';
+
+  const review = createReviewHTML(body);
+  const ul = document.getElementById('reviews-list');
+  ul.appendChild(review);
+  return submitReview(body);
+})
+
 /**
  * Initialize map box map, called from HTML.
  */
@@ -108,7 +178,7 @@ var fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours)
  */
 var fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
-  const title = document.createElement('h2');
+  const title = document.createElement('h3');
   title.className = 'reviews-label';
   title.innerHTML = reviews.length + ' Reviews';
   container.appendChild(title);
@@ -203,7 +273,9 @@ var fillBreadcrumb = (restaurant = self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
+  li.setAttribute('aria-current', 'page')
   breadcrumb.appendChild(li);
+  return breadcrumb;
 }
 
 /**
