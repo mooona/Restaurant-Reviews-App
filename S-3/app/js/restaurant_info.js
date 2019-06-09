@@ -40,8 +40,8 @@ function submitReview(body) {
 
 const submitButton = document.getElementById('submit-button');
 submitButton.addEventListener('click', function () {
-  const form = document.getElementById("reviews-form");
-  let reviewerName = document.getElementById('reviewer-name').value;
+  const form = document.getElementById("add_review-form");
+  let reviewerName = document.getElementById('your-name').value;
   const comment = form.textarea.value;
   const ratings = document.querySelectorAll('input[type="radio"]');
   const restaurantId = window.location.href.split('=')[1];
@@ -72,7 +72,7 @@ submitButton.addEventListener('click', function () {
   const ul = document.getElementById('reviews-list');
   ul.appendChild(review);
   return submitReview(body);
-})
+});
 
 /**
  * Initialize map box map, called from HTML.
@@ -97,6 +97,7 @@ window.initMap = () => {
         el.className = 'marker';
         let mymarker =new mapboxgl.Marker(el, { offset: [0, -23] }).setLngLat(restaurant.latlng).addTo(locsMap);
       fillBreadcrumb();
+        fillReviewsForm();
     //  DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
     }
   });
@@ -132,6 +133,7 @@ var fetchRestaurantFromURL = (callback) => {
  * Create restaurant HTML and add it to the webpage
  */
 var fillRestaurantHTML = (restaurant = self.restaurant) => {
+
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
 
@@ -145,7 +147,7 @@ var fillRestaurantHTML = (restaurant = self.restaurant) => {
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
 
-  // fill operating hours
+ // fill operating hours
   if (restaurant.operating_hours) {
     fillRestaurantHoursHTML();
   }
@@ -244,18 +246,20 @@ var createReviewHTML = (review) => {
     }
     rating.innerHTML = ratingContainer;
     nameRate.appendChild(rating);
-    /*date*/
+    /*date
     const date = document.createElement('p');
     date.innerHTML = review.date;
     date.setAttribute('aria-label', `Review date`);
     date.className ="review-date";
-    reviewdata.appendChild(date);
+    reviewdata.appendChild(date);*/
 
 /*comments*/
   const comments = document.createElement('p');
-  comments.innerHTML = '<span class="review-date" aria-label="Review date">'+review.date+'</span>' + review.comments;
+ // comments.innerHTML = '<span class="review-date" aria-label="Review date">'+review+'</span>' + review.comments;
+  comments.innerHTML = review.comments;
     comments.className ="comment";
   li.appendChild(comments);
+
 
 /*break line*/
     const breakBorder = document.createElement('div');
@@ -278,6 +282,12 @@ var fillBreadcrumb = (restaurant = self.restaurant) => {
   return breadcrumb;
 }
 
+var fillReviewsForm = (restaurant = self.restaurant) =>{
+    /*form review title*/
+    const restaurantTitle= document.getElementById('reviewFormTitle');
+    restaurantTitle.innerHTML= "Please Review " + restaurant.name + " Restaurant";
+    console.log('reviews form filled');
+}
 /**
  * Get a parameter by name from page URL.
  */
@@ -301,4 +311,3 @@ window.onscroll = () => {
     else nav.className = 'scroll';
 };
 
-//;

@@ -217,9 +217,10 @@ gulp.task('watch', function () {
 })
 
 
+/*
 gulp.task('develop', function(done) {
     runSequence('images', 'js:browser','styles','templates','copyfonts','copyMapBox','copyManifest','service-worker', function() {
         console.log('all functions deone');
         done();
     });
-});
+});*/

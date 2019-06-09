@@ -198,8 +198,8 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    if (restaurant.id == 10) return (`images/10.webp`);
-    return (`images/${restaurant.photograph}.webp`);
+    if (restaurant.id == 10) return (`img/10.webp`);
+    return (`img/${restaurant.photograph}.webp`);
   }
 
 }

@@ -41,7 +41,7 @@ if (workbox) {
   },
   {
     "url": "CSS/style.css",
-    "revision": "d1f5f42291774b5503fb90f65899e425"
+    "revision": "5bdd606601e6acaf1007b8c353453f55"
   },
   {
     "url": "index.html",
@@ -49,15 +49,15 @@ if (workbox) {
   },
   {
     "url": "js/dbhelper.js",
-    "revision": "d2a8cc9ce3717d36736362cbe3c55e61"
+    "revision": "dc3894e818415493d8c3a6379d2ea24c"
   },
   {
     "url": "js/main.js",
-    "revision": "959ebf6e72c087184904330d9a977565"
+    "revision": "83c3ddc0a39d3037d72ddb20759e5706"
   },
   {
     "url": "js/restaurant_info.js",
-    "revision": "f0f6dde276ac7c4bcc258e6686871ee1"
+    "revision": "d6f942a3a5a0b44db4c51bdd546855da"
   },
   {
     "url": "mapBox/mabBox.js",
@@ -69,11 +69,11 @@ if (workbox) {
   },
   {
     "url": "restaurant.html",
-    "revision": "87b89a686e5cbb33813889f654295877"
+    "revision": "688d91a83ef8710400e00afe8b50ee99"
   },
   {
     "url": "sw.js",
-    "revision": "47fa283ade05d11841a5a7d1e693eb8a"
+    "revision": "5228972b1e5263faf4321622eb6e7d05"
   },
   {
     "url": "img/1.jpg",
@@ -172,8 +172,16 @@ if (workbox) {
     "revision": "a2699423ee418f80a8546388d254967d"
   },
   {
+    "url": "img/Favicon-active.svg",
+    "revision": "40575c2e13a734c0df7aef0635354d37"
+  },
+  {
     "url": "img/favicon.png",
     "revision": "1ecf53bb2b7b15009492ab60d7edc99d"
+  },
+  {
+    "url": "img/Favicon.svg",
+    "revision": "8401675a9abea589d2d7ceefb69eb1e2"
   },
   {
     "url": "img/favicon.webp",

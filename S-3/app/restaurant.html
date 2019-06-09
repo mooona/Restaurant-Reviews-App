@@ -61,6 +61,54 @@
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
+    <!-- add Review Start -->
+    <section id="add-review-container">
+        <h3 id="reviewFormTitle" class="reviews-label"></h3>
+      <form id="add_review-form">
+          <div class="clearfix ">
+                  <input type="radio" id="star-1" name="rating" value="1"/>
+                  <input type="radio" id="star-2" name="rating" value="2"/>
+                  <input type="radio" id="star-3" name="rating" value="3"/>
+                  <input type="radio" id="star-4" name="rating" value="4"/>
+                  <input type="radio" id="star-5" name="rating" value="5"/>
+          </div>
+
+          <div id="ratingStarsContainer">
+              <label for="star-1" name="rating">
+                  <svg width="25px" height="24px" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+              </label>
+              <label for="star-2" name="rating">
+                  <svg width="25px" height="24px" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+              </label>
+              <label for="star-3" name="rating">
+                  <svg width="25px" height="24px" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+              </label>
+
+              <label for="star-4" name="rating">
+                  <svg width="25px" height="24px" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+              </label>
+              <label for="star-5" name="rating">
+                  <svg width="25px" height="24px" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+              </label>
+          </div>
+          <label class="formLabel" for="your-name">Please add your full name</label>
+          <input id="your-name" class="inputStyle" name="name" aria-label="Please add your full name" required="required" placeholder="Full Name">
+          <label class="formLabel" for="add_your_review">Please add your review</label>
+        <textarea id="add_your_review" class="inputStyle" name="comments" aria-label="Please add your review" placeholder="Your Review" required="required"></textarea>
+          <button id="submit-button" type="submit" aria-label="Send your submission">Submit</button>
+      </form>
+    </section>
+    <!-- add Review End -->
   </main>
   <!-- End main -->
 
@@ -69,13 +117,6 @@
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
   <!-- End footer -->
-<!-- Add review overlay -->
-  <div class="overlayContainer hidden">
-    <div class="overlayBackgroundTransparent" aria-hidden="true"></div>
-    <div id="overlayBodyContainer" class="overlayBodyContainer" role="dialog">
-
-    </div>
-  </div>
   <!-- Beginning scripts -->
   <!-- Main javascript file -->
   <script type="module" src="js/restaurant_info.js"></script>

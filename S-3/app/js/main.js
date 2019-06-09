@@ -8,6 +8,16 @@ let restaurants,
 var mymarker;
 var locsMap;
 var markers = [];
+
+let dbPromise = DBHelper.openDatabase;
+let openObjectStore = DBHelper.openObjectStore;
+
+const triggerFavoriteRequestQueueSync = function () {
+  navigator.serviceWorker.ready.then(function (swRegistration) {
+    swRegistration.sync.register('favqueue');
+  });
+}
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -128,6 +138,33 @@ window.initMap = () => {
     mymap(loc);
     updateRestaurants();
 }
+
+/**
+ * Update page and map for current restaurants.
+ */
+var updateRestaurants = () => {
+  const cSelect = document.getElementById('cuisines-select');
+  const nSelect = document.getElementById('neighborhoods-select');
+
+  const cIndex = cSelect.selectedIndex;
+  const nIndex = nSelect.selectedIndex;
+
+  const cuisine = cSelect[cIndex].value;
+  const neighborhood = nSelect[nIndex].value;
+
+  DBHelper.fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, (error, restaurants) => {
+    if (error) { // Got an error!
+      console.error(error);
+    } else {
+      resetRestaurants(restaurants);
+      fillRestaurantsHTML();
+    }
+  })
+}
+
+/**
+ * Clear current restaurants, their HTML and remove their map markers.
+ */
 var mymap = (loc) => {
     locsMap = new mapboxgl.Map({
         container: 'locsMap',
@@ -136,19 +173,74 @@ var mymap = (loc) => {
         zoom: 11.12// starting zoom
     });
 }
+var resetRestaurants = (restaurants) => {
+  // Remove all restaurants
+  self.restaurants = [];
+  const ul = document.getElementById('restaurants-list');
+  ul.innerHTML = '';
 
+  // Remove all map markers
+  markers.forEach(m => m.setMap(null));
+  markers = [];
+  self.restaurants = restaurants;
+}
+
+/**
+ * Create all restaurants HTML and add them to the webpage.
+ */
+var fillRestaurantsHTML = (restaurants = self.restaurants) => {
+  let tabIndex = 3;
+  const ul = document.getElementById('restaurants-list');
+  restaurants.forEach(restaurant => {
+    ul.append(createRestaurantHTML(restaurant, tabIndex));
+    tabIndex++;
+  });
+
+  var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target;
+          lazyImage.src = lazyImage.dataset.src;
+          lazyImage.srcset = lazyImage.dataset.srcset;
+          lazyImage.classList.remove("lazy");
+          lazyImageObserver.unobserve(lazyImage);
+        }
+      });
+    });
+
+    lazyImages.forEach(function (lazyImage) {
+      lazyImageObserver.observe(lazyImage);
+    });
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+}
 
 /**
  * Create restaurant HTML.
  */
 var createRestaurantHTML = (restaurant, tabIndex) => {
+  const restaurantId = restaurant.id;
+
+  const isRestaurantFavorite = (restaurant.is_favorite == 'true');
+
   const li = document.createElement('li');
     li.className = 'restaurant-Card';
+    const imgFavContainer = document.createElement('div');
+    li.append(imgFavContainer);
+    imgFavContainer.className="imageFavContainer";
 
-const imgContainer = document.createElement('div');
+    const favoriteButton = document.createElement('button');
+    favoriteButton.className="favIcon";
+   // favoriteButton.setAttribute ('markFav', '3');
+    imgFavContainer.append(favoriteButton);
+
+    const imgContainer = document.createElement('div');
     imgContainer.className = 'restaurant-img-container';
-    li.append(imgContainer);
-
+    imgFavContainer.append(imgContainer);
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
@@ -159,6 +251,23 @@ const imgContainer = document.createElement('div');
   name.innerHTML = restaurant.name;
   name.className = 'restaurant-name';
   li.append(name);
+
+  if (isRestaurantFavorite) {
+    favoriteButton.setAttribute('favorised', '');
+    favoriteButton.setAttribute('aria-label', `Remove ${restaurant.name} from favorites`);
+    favoriteButton.setAttribute ('markFav', true);
+  } else {
+    favoriteButton.setAttribute('aria-label', `Mark ${restaurant.name} as favorite`);
+      favoriteButton.setAttribute ('markFav', false);
+  }
+
+  favoriteButton.setAttribute('restaurantId', restaurantId);
+  favoriteButton.setAttribute('restaurantname', restaurant.name);
+  favoriteButton.id = `favoriteButton${restaurantId}`;
+
+
+
+  favoriteButton.addEventListener('click', toggleFavorite);
 
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
@@ -177,8 +286,45 @@ const imgContainer = document.createElement('div');
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more)
 
+
+
   return li
 }
+
+const toggleFavorite = function (event) {
+    const restaurantId = parseInt(this.getAttribute('restaurantId'));
+    const favoriteButton = document.getElementById(`favoriteButton${restaurantId}`);
+    const isFavorised = favoriteButton.hasAttribute('favorised');
+    const restaurantName = favoriteButton.getAttribute('restaurantname');
+    if (isFavorised) {
+        favoriteButton.removeAttribute('favorised');
+        favoriteButton.setAttribute('aria-label', `Mark ${restaurantName} as favorite`);
+        favoriteButton.setAttribute ('markFav', false);
+    } else {
+        favoriteButton.setAttribute('favorised', '');
+        favoriteButton.setAttribute('aria-label', `Remove ${restaurantName} from favorites`);
+        favoriteButton.setAttribute ('markFav', true);
+    }
+    dbPromise.then(function (db) {
+        var restaurantStore = DBHelper.openObjectStore(db, 'restaurants', 'readonly')
+        return restaurantStore.get(restaurantId);
+    }).then(restaurant => {
+        const isFavorite = !(restaurant.is_favorite == 'true');
+        restaurant.is_favorite = isFavorite.toString();
+        return dbPromise.then(function (db) {
+            var restaurantStore = openObjectStore(db, 'restaurants', 'readwrite');
+            var favStore = openObjectStore(db, 'favqueue', 'readwrite');
+            restaurantStore.put(restaurant);
+            restaurant.url = `http://localhost:1337/restaurants/${restaurant.id}/?is_favorite=${isFavorite}`;
+            restaurant.method = "put";
+            favStore.put(restaurant, restaurant.id);
+            restaurantStore.complete;
+            return favStore.complete
+        }).then(() => {
+            return triggerFavoriteRequestQueueSync()
+        }).catch((err) => console.log(err))
+    })
+};
 
 /**
  * Add markers for current restaurants to the map.
